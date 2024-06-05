@@ -1,0 +1,29 @@
+<div class="container-fluid container-main container-chat">
+    <%- include('tab-header', {
+        title: 'Speed Test'
+    }) %>
+
+    <div id="speedTestContainer" class="mt-2">
+        <!--<h2>Test your internet speed</h2>-->
+
+        <form id="speedTestForm" novalidate>
+            <input type="number" id="testDuration" name="testDuration" placeholder="Duration (seconds)" min="1" required>
+            <div class="validation-error" style="display:none;">Please enter a duration greater than 0.</div>
+
+            <input type="number" id="requestInterval" name="requestInterval" placeholder="Interval (milliseconds)" min="1" required>
+            <div class="validation-error" style="display:none;">Please enter an interval greater than 0.</div>
+
+            <button type="submit" id="submitSpeedTest">Start Test</button>
+            <button type="button" id="cancelSpeedTest">Cancel</button>
+        </form>
+
+        <div id="progressLoader" style="display:none;">
+            <!-- Progress loader here -->
+            <div class="loader"></div>
+        </div>
+        <div id="testResults" style="display: none;">
+            <!-- Test results will be displayed here -->
+        </div>
+        <div class="validation-error" style="display:none;">Max post requests reached. Reduce the duration or increase interval.</div>
+    </div>
+</div>

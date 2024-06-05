@@ -1,0 +1,104 @@
+<div class="container-fluid container-main container-directory">
+    <div class="tab-header user-status mx-2">
+        <div class="share-status-label d-flex align-items-center ml-2">
+            <span>Share your status:</span>
+            <div class="d-flex align-items-center mx-n1">
+                <select id="statusSelector" class="form-control form-control-sm mx-2">
+                    <option value="" selected disabled>Status</option>
+                    <option value="OK">OK</option>
+                    <option value="Help">Help</option>
+                    <option value="Emergency">Emergency</option>
+                    <option value="Undefined" hidden>Undefined</option>
+                </select>
+                <span class="status-indicator" id="statusIndicator"></span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-secondary ml-2" id="searchButton">
+            <i class="fas fa-search"></i>
+        </button>
+        <!-- <div id="onlineCount" class="ml-auto mr-3"><span>Online: 0</span></div> -->
+    </div>
+    <!-- Divider for visual separation -->
+    <div class="divider"></div>
+    <ul class="esn-directory-list" id="esn-directory">
+        <!-- ESN Directory will be dynamically updated here -->
+    </ul>
+    <%- include('modal', {
+        id: 'needHelpModal',
+        title: 'Help',
+        body: `
+          <form id="volunteerSkillsForm">
+            <div class="form-group">
+              <div class="mb-3 d-flex flex-column">
+                <label for="skills" class="form-label">What kind of help do you need?</label>
+                <select class="form-select" id="skills">
+                  <option value="first aid">First Aid</option>
+                  <option value="cpr">CPR</option>
+                  <option value="emergency medical technician">Emergency Medical Technician (EMT)</option>
+                  <option value="firefighting">Firefighting</option>
+                  <option value="nursing">Nursing</option>
+                  <option value="mental health counseling">Mental Health Counseling</option>
+                  <option value="disaster response">Disaster Response</option>
+                  <option value="search and rescue">Search and Rescue</option>
+                  <!-- Add more options here -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" id="submitHelpRequest">Submit</button>
+            </div>
+          </form>
+        `,
+        closeButtonId: 'needHelpModalClose'
+      }) %>
+
+    <div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog" aria-labelledby="userProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userProfileModalLabel">User Profile Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for editing user profile -->
+                    <form id="userProfileForm">
+                        <!-- Account Status -->
+                        <div class="form-group">
+                            <label for="accountStatus">Account Status</label>
+                            <select class="form-control" id="accountStatus">
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                        <!-- Privilege Level -->
+                        <div class="form-group">
+                            <label for="privilegeLevel">Privilege Level</label>
+                            <select class="form-control" id="privilegeLevel">
+                                <option>Administrator</option>
+                                <option>Coordinator</option>
+                                <option>Citizen</option>
+                            </select>
+                        </div>
+                        <!-- Username -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter new username">
+                            <div id="username-error" class="error-message"></div>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter new password">
+                            <div id="password-error" class="error-message"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="esnDirectory.submitUserProfileChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

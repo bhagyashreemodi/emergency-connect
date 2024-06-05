@@ -1,0 +1,124 @@
+.esn-directory-list {
+    list-style-type: none;
+    padding: 15px;
+    overflow-y: auto;
+    margin: 0;
+}
+
+
+.esn-directory-list::-webkit-scrollbar {
+    display: none;
+}
+
+.directory-item  {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+.directory-item:hover { background-color: lightgray; }
+.directory-item:active { background-color: #c5c5c5; }
+
+.directory-item-header, .directory-item-widget{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.directory-username {
+    font-weight: bold;
+    color: #333;
+    width: 40%;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line. */
+    overflow: hidden; /* Ensures the overflow text is hidden. */
+    text-overflow: ellipsis; 
+    
+}
+
+.directory-status {
+    display: inline-block; 
+    min-width: 25px;
+    padding: 2px 8px; 
+    border-radius: 15px;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    box-sizing: border-box;
+}
+
+.directory-status-online { 
+    background-color: #4CAF50; 
+}
+.directory-status-offline { 
+    background-color: #a8a8a8; 
+}
+
+.item-text {
+    color: #333;
+}
+
+.container-directory {
+    height: 100%;
+}
+
+.divider {
+    height: 2px;
+    background-color: #e0e0e0; /* Light gray color */
+}
+
+/* Ensuring there's a clear gap between the status sharing section and the directory list */
+.container-directory {
+    padding: 20px; /* Increased padding around the directory for clearer separation */
+    height: auto; /* Adjust height as necessary */
+}
+
+.share-status-label {
+    white-space: nowrap; /* Prevents text from wrapping and forces it onto one line */
+    /* If the text is still wrapping, you might need to adjust padding/margins around the elements. */
+}
+
+.status-indicator {
+    width: 15px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px; /* Adjust as necessary */
+}
+
+.online-indicator {
+    width: 15px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.user-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 8px;
+}
+
+
+/* Add a media query for small screens */
+@media (max-width: 330px) { /* Adjust the max-width as needed for your design */
+    .user-status {
+        /* flex-wrap: wrap; /* Allows items to wrap onto the next line */
+    }
+    .user-status > .share-status-label,
+    .user-status > .d-flex.align-items-center {
+        flex-basis: 100%; /* Forces these items to take full width */
+        margin-bottom: 0.5rem; /* Adds a little space between the wrapped items */
+    }
+    #onlineCount {
+        margin-left: 0; /* Resets the left margin on smaller screens */
+        order: 3; /* Positions the online count below the status selector */
+    }
+}

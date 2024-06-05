@@ -1,0 +1,1 @@
+export const SECRET_KEY = "FSE_@)@$_SECRET_KEY";

@@ -1,0 +1,232 @@
+:root {
+    --blue-theme-color: #007bff;
+    --blue-theme-hover-color: #0056b3;
+    --blue-theme-active-color: #004099;
+}
+.nav-tabs {
+    background-color: #f8f9fa;
+    padding: 0px 8px;
+    margin-bottom: 0;
+    font-size: 24px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #495057 ;
+    background-color: #f8f9fa;
+    border-bottom: 3px solid #007bff;
+    border-radius: 0;
+}
+
+.nav-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-radius: 0;
+    color: #6c757d;
+    background-color: transparent;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #0056b3;
+    background-color: #e9ecef;
+}
+
+
+body {
+    background-color: #f8f9fa;
+    background-color: #f0f8ff !important;
+}
+
+.tab-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.user-info {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tab-header {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.container-main {
+    display: flex; 
+    padding: 0px;
+    flex-direction: column;
+    height: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.status-OK { background-color: #4CAF50; }
+.status-Help { background-color: #FFC107; }
+.status-Emergency { background-color: #F44336; }
+.status-Undefined { background-color: grey; }
+
+.input-group-append .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.modal-dialog {
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header, .modal-footer {
+    flex-shrink: 0;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 0px !important;
+}
+
+#searchResults {
+    overflow-y: auto;
+    max-height: 48vh;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+#searchResults::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+#speedTestContainer {
+    text-align: center;
+}
+
+#speedTestContainer h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Form and Inputs */
+#speedTestForm input[type="number"] {
+    width: 70%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#speedTestForm button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin: 10px 5px;
+    transition: background-color 0.3s ease;
+}
+
+#speedTestForm button:hover {
+    background-color: #0056b3;
+}
+
+#speedTestForm button#cancelSpeedTest {
+    background-color: #dc3545;
+}
+
+#speedTestForm button#cancelSpeedTest:hover {
+    background-color: #c82333;
+}
+
+/* Loader Styles */
+#progressLoader .loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Test Results */
+#testResults {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e2e6ea;
+    border-radius: 5px;
+    color: #343a40;
+}
+
+.close-button {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28%;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.validation-error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.edit-incident {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}

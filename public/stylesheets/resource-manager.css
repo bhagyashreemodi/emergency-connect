@@ -1,0 +1,94 @@
+.resource-manager-list {
+    list-style-type: none;
+    padding: 15px;
+    overflow-y: scroll;
+    margin-bottom: 0px;
+    height: 100vh;
+}
+
+
+.resource-manager-list::-webkit-scrollbar {
+    display: none;
+}
+
+.resource-item  {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+.resource-item:hover { background-color: lightgray; }
+.resource-item:active { background-color: #c5c5c5; }
+
+.resource-item[data-resource="volunteer-management"] {
+    background-color: #d6f8ff;
+  }
+  
+  .resource-item[data-resource="resource-sharing-hub"] {
+    background-color: #fff7e6;
+  }
+  
+  .resource-item[data-resource="shelter"] {
+    background-color: #e6ffe6;
+  }
+  
+  .resource-item[data-resource="incident-map"] {
+    background-color: #ffe6e6;
+  }
+  
+.resource-item-header, .resource-item-widget{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.resource-item-header i {
+    margin-right: 6px;
+  }
+
+.resource-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line. */
+    overflow: hidden; /* Ensures the overflow text is hidden. */
+    
+}
+
+.resource-status {
+    display: inline-block; 
+    min-width: 25px;
+    padding: 2px 8px; 
+    border-radius: 15px;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    box-sizing: border-box;
+}
+
+.resource-status-online { 
+    background-color: #4CAF50; 
+}
+.resource-status-offline { 
+    background-color: #a8a8a8; 
+}
+
+.resource-item-text {
+    color: #333;
+}
+
+.container-resource {
+    height: 100%;
+}
+
+/* Ensuring there's a clear gap between the status sharing section and the resource list */
+.container-resource {
+    padding: 20px; /* Increased padding around the resource for clearer separation */
+    height: auto; /* Adjust height as necessary */
+}

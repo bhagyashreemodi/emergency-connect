@@ -1,0 +1,145 @@
+<div class="container-fluid container-main">
+    <%- include('tab-header', {
+        title: 'Volunteer Profile',
+        backButton: true,
+        backButtonTarget: 'volunteer-management'
+    }) %>
+    <div class="container volunteer-page-content" id="registerDiv">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h3 class="text-center">Volunteer Profile</h3>
+                    </div> -->
+                    <div class="card-body">
+                        <form id="registerForm">
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" minlength="1" required>
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" minlength="1">
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="phoneNumber" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phoneNumber"
+                                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                       placeholder="123-456-7890"
+                                       title="Enter a phone number in the format: 123-456-7890"
+                                       required>
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="stateInput" class="form-label">State</label>
+                                <select class="form-control" id="stateInput">
+                                    <option selected disabled>Choose a state</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <option value="Arizona">Arizona</option>
+                                    <option value="Arkansas">Arkansas</option>
+                                    <option value="California">California</option>
+                                    <option value="Colorado">Colorado</option>
+                                    <option value="Connecticut">Connecticut</option>
+                                    <option value="Delaware">Delaware</option>
+                                    <option value="Florida">Florida</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Hawaii">Hawaii</option>
+                                    <option value="Idaho">Idaho</option>
+                                    <option value="Illinois">Illinois</option>
+                                    <option value="Indiana">Indiana</option>
+                                    <option value="Iowa">Iowa</option>
+                                    <option value="Kansas">Kansas</option>
+                                    <option value="Kentucky">Kentucky</option>
+                                    <option value="Louisiana">Louisiana</option>
+                                    <option value="Maine">Maine</option>
+                                    <option value="Maryland">Maryland</option>
+                                    <option value="Massachusetts">Massachusetts</option>
+                                    <option value="Michigan">Michigan</option>
+                                    <option value="Minnesota">Minnesota</option>
+                                    <option value="Mississippi">Mississippi</option>
+                                    <option value="Missouri">Missouri</option>
+                                    <option value="Montana">Montana</option>
+                                    <option value="Nebraska">Nebraska</option>
+                                    <option value="Nevada">Nevada</option>
+                                    <option value="New Hampshire">New Hampshire</option>
+                                    <option value="New Jersey">New Jersey</option>
+                                    <option value="New Mexico">New Mexico</option>
+                                    <option value="New York">New York</option>
+                                    <option value="North Carolina">North Carolina</option>
+                                    <option value="North Dakota">North Dakota</option>
+                                    <option value="Ohio">Ohio</option>
+                                    <option value="Oklahoma">Oklahoma</option>
+                                    <option value="Oregon">Oregon</option>
+                                    <option value="Pennsylvania">Pennsylvania</option>
+                                    <option value="Rhode Island">Rhode Island</option>
+                                    <option value="South Carolina">South Carolina</option>
+                                    <option value="South Dakota">South Dakota</option>
+                                    <option value="Tennessee">Tennessee</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="Utah">Utah</option>
+                                    <option value="Vermont">Vermont</option>
+                                    <option value="Virginia">Virginia</option>
+                                    <option value="Washington">Washington</option>
+                                    <option value="West Virginia">West Virginia</option>
+                                    <option value="Wisconsin">Wisconsin</option>
+                                    <option value="Wyoming">Wyoming</option>
+                                </select>
+
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="city" class="form-label">City Name</label>
+                                <input type="text" class="form-control" id="city"
+                                       pattern="[A-Za-z\s\-']+"
+                                       placeholder="Enter your city"
+                                       title="City name should only contain letters, spaces, hyphens (-), and apostrophes (')."
+                                       required maxlength="100">
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="zipCode" class="form-label">Zip Code</label>
+                                <input type="text" class="form-control" id="zipCode"
+                                       pattern="[0-9]{5}"
+                                       placeholder="Enter your zip code"
+                                       title="Zip code should be 5 digits long."
+                                       required>
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="skills" class="form-label">Skills</label>
+                                <select multiple class="form-select" id="skills">
+                                    <option value="first aid">First Aid</option>
+                                    <option value="cpr">CPR</option>
+                                    <option value="emergency medical technician">Emergency Medical Technician (EMT)</option>
+                                    <option value="firefighting">Firefighting</option>
+                                    <option value="nursing">Nursing</option>
+                                    <option value="mental health counseling">Mental Health Counseling</option>
+                                    <option value="disaster response">Disaster Response</option>
+                                    <option value="search and rescue">Search and Rescue</option>
+                                    <!-- Add more options here -->
+                                </select>
+                            </div>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="availability" class="form-label">Availability</label>
+                                <select multiple class="form-select" id="availability">
+                                    <option value="sunday">Sunday         </option>
+                                    <option value="monday">Monday         </option>
+                                    <option value="tuesday">Tuesday       </option>
+                                    <option value="wednesday">Wednesday   </option>
+                                    <option value="thursday">Thursday     </option>
+                                    <option value="friday">Friday         </option>
+                                    <option value="saturday">Saturday     </option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="smsConsent">
+                                <label class="form-check-label" for="smsConsent">I consent to receive SMS messages to the provided phone number.</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" id="registerProfileBtn">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

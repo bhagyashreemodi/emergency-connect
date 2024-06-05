@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmergencyConnect</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/auth-style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Join Community</h2>
+        <form id="authForm">
+            <div class="form-group">
+                <label for="username">Please input your username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                <div id="username-error" class="error-message"></div> 
+            </div>
+            <div class="form-group">
+                <label for="password">Please input your password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div id="password-error" class="error-message"></div> 
+            </div>
+            <div class="auth-btns">
+                <button type="button" class="btn btn-primary auth-btn" onclick="authUser()">Join</button>
+                <a href="/" class="btn btn-secondary auth-btn">Return</a> 
+            </div>
+        </form>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <%- include('modal', {
+        id: 'confirmationModal',
+        title: 'Confirm Registration',
+        body: `
+          <div class="alert alert-info">
+            New here? Do you want to register?
+          </div>
+        `,
+        footer: `
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmationModalOkButton">OK</button>
+        `
+      }) %>
+    
+
+    <!-- Success Modal -->
+    <%- include('modal', {
+        id: 'authSuccessModal',
+        title: 'Login Successful',
+        body: `
+          <div class="alert alert-info">
+            Welcome to Emergency Social Network! Please read the rules and guidelines. You can share your status and location with your friends and family here. Here are some examples:
+          </div>
+          <ul class="list-group mt-3 mb-3">
+            <li class="list-group-item">OK: I am OK, I do not need help.</li>
+            <li class="list-group-item bg-success text-white">Green</li>
+            <li class="list-group-item">Help: I need help, but this is not a life-threatening emergency.</li>
+            <li class="list-group-item bg-warning text-dark">Yellow</li>
+            <li class="list-group-item">Emergency: I need help now, this is a life-threatening emergency!</li>
+            <li class="list-group-item bg-danger text-white">Red</li>
+          </ul>
+          <div class="alert alert-info">
+            If you understand and agree to the rules and guidelines, click "Agree" to continue.
+          </div>
+        `,
+        footer: `
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="authSuccessModalOkButton">Agree</button>
+        `
+    }) %>
+
+    <!-- Error Modal -->
+    <%- include('modal', {
+        id: 'errorModal',
+        title: 'Error',
+        body: `
+          <div id="errorModalMessage" class="alert alert-danger"></div>
+        `
+    }) %>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/scripts/auth-view-handler.js"></script>
+</body>
+</html>

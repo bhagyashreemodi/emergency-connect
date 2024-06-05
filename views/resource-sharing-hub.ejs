@@ -1,0 +1,124 @@
+<style>
+    /* add scrollbar for modal body */
+    /* ref: https://stackoverflow.com/questions/25874001/how-to-put-scroll-bar-only-for-modal-body */
+    .modal-dialog{
+        overflow-y: initial !important
+    }
+    .modal-body{
+        height: 80vh;
+        overflow-y: auto;
+    }
+    .post-btn {
+        display: flex; /* Ensures flexbox layout */
+        align-items: center; /* Vertically centers the items */
+        padding: 8px 40px;
+        width: 100%;
+        max-width: 600px;
+    }
+</style>
+
+
+<div class="container-fluid container-main">
+
+    <%- include('tab-header', {
+        title: 'Resource Sharing',
+        backButton: true,
+        backButtonTarget: 'resources'
+    }) %>
+
+    <ul class="chat-message-list" id="postContainer">
+        <!-- Posts will be dynamically inserted here -->
+    </ul>
+
+    <div class="fixed-bottom-input">
+        <button type="button" class="btn btn-sm btn-primary" style="width: 32%;" onclick="resourceSharingHub.switchSubTabCommunity()">
+            Community
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" style="width: 32%;" onclick="resourceSharingHub.switchSubTabPersonal()">
+            Personal
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" style="width: 32%;" data-toggle="modal" data-target="#editModal" onclick="resourceSharingHub.editPostModalOpenModal(null)">
+            New Request
+        </button>
+    </div>
+
+</div>
+
+
+<!-- Post/Edit Request Form Modal -->
+<%- include('modal', {
+    id: 'editModal',
+    title: 'Edit Your Request',
+    body: `
+      <form id="editResourceRequestForm">
+        <div class="form-group">
+          <label for="title">Title *</label>
+          <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="requestedItems">Requested Items</label>
+          <div id="requestedItemsContainer">
+            <input type="text" class="form-control mb-2" name="requestedItem[]">
+          </div>
+          <button type="button" class="btn btn-sm btn-success" onclick="ResourceSharingHub.editPostModalAddRequestedItem()">
+            <i class="fas fa-plus"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-danger" onclick="ResourceSharingHub.editPostModalRemoveRequestedItem()">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" name="address">
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" class="form-control" id="email" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+          <small id="emailHelp" class="form-text text-muted">Please enter a valid email address.</small>
+        </div>
+      </form>
+    `,
+    footer: `
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="submit" form="editResourceRequestForm" class="btn btn-primary" onclick="resourceSharingHub.editPostModalSubmitForm()">Submit</button>
+    `
+  }) %>
+
+
+<!-- Offer Help Form Modal -->
+<%- include('modal', {
+    id: 'offerHelpModal',
+    title: 'Offer Help!',
+    body: `
+      <form id="offerHelpForm">
+        <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message for the requester..." required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" class="form-control" id="email" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+            <small id="emailHelp" class="form-text text-muted">Please enter a valid email address.</small>
+        </div>
+      </form>
+    `,
+    footer: `
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="submit" form="offerHelpForm" class="btn btn-primary" onclick="resourceSharingHub.offerHelpModalSubmitForm()">Submit</button>
+    `
+}) %>
+
+<script>
+    // Prevent form submission, but keep the form checking.
+    // Use custom function for submission instead
+    document.getElementById('editResourceRequestForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+    });
+    document.getElementById('offerHelpForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+    });
+</script>

@@ -1,0 +1,174 @@
+.btn-primary {
+    background-color: var(--blue-theme-color);
+    border-color: var(--blue-theme-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-theme-hover-color);
+    border-color: var(--blue-theme-hover-color);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--blue-theme-active-color);
+    border-color: var(--blue-theme-active-color);
+}
+
+.chat-message-list {
+    list-style-type: none;
+    padding: 15px;
+    overflow-y: scroll;
+    margin-bottom: 0px;
+    height: 100vh;
+}
+
+.chat-message {
+    position: relative;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+    width: 40%;
+}
+
+.timestamp {
+    color: #6c757d;
+    font-size: 12px;
+    align-self: flex-end;
+}
+
+.status {
+    display: inline-block; 
+    min-width: 25px;
+    padding: 2px 8px; 
+    border-radius: 15px;
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    box-sizing: border-box; 
+}
+
+
+.status-ok { background-color: #4CAF50; color: white; }
+.status-help { background-color: #FFC107; color: white; }
+.status-emergency { background-color: #F44336; color: white; }
+.status-undefined { background-color: #A8A8A8; color: white; }
+
+.message-text {
+    color: #333;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.fixed-bottom-input {
+    display: flex; /* Ensures flexbox layout */
+    justify-content: space-between; /* Spacing between elements */
+    align-items: center; /* Vertically centers the items */
+    padding: 20px 15px;
+    background-color: #f8f9fa;
+    border-top: 2px solid #dee2e6;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-inline .form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+    border: 2px solid #ced4da;
+
+    padding: 10px 15px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.form-inline .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    background-color: #007bff;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* Hover and focus styles for the send button */
+.form-inline .btn-primary:hover,
+.form-inline .btn-primary:focus {
+    background-color: #0056b3; /* Slightly darker shade on hover/focus */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* Enhanced shadow for depth */
+}
+
+/* Active state styles for the send button */
+.form-inline .btn-primary:active {
+    background-color: #004495; /* Even darker for the active state */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Reset shadow to mimic "pressed" effect */
+}
+
+.message-input-box {
+    border-top: 1px solid #ccc;
+}
+
+/* Adjust the input box within the message-input-box to match the new layout */
+.form-inline {
+    width: 100%;
+    padding: 10px;
+}
+
+.form-inline, .input-group {
+    width: 100%;
+}
+
+.form-inline .form-control, .input-group .form-control {
+    flex-grow: 1;
+    margin-right: 0;
+    border-radius: 5px; 
+}
+
+.input-group-append .btn-primary {
+    border-radius: 5px; 
+}
+
+.input-group-append {
+    margin-left: -1px;
+}
+
+.chat-message-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    .fixed-bottom-input-mobile {
+        bottom: 10px; /* Less offset on smaller screens */
+        width: calc(100% - 20px); /* Adjust if necessary for mobile */
+        margin: 0 10px;
+    }
+}
+
+.message-timestamp {
+    float: right; /* Or use flexbox utilities if you're using a framework that supports it */
+    margin-left: auto; /* If the parent is a flex container */
+}
+
+
+.container-chat {
+    height: 100%;
+}

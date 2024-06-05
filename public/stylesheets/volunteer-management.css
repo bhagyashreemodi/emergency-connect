@@ -1,0 +1,42 @@
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    padding: 10% 10%;
+    font-size: 90%;
+    margin-bottom: 15%;
+}
+.container-custom {
+    padding-top: 20px;
+}
+.back-button {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#skills {
+    height: auto;
+}
+
+#registerForm input:invalid {
+border-color: #dc3545; /* Bootstrap's danger color */
+}
+  
+#registerForm input:valid {
+  border-color: #28a745; /* Bootstrap's success color */
+}
+  
+
+.volunteer-page-content {
+    overflow-y: auto;
+}

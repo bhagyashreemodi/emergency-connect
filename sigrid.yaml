@@ -1,0 +1,11 @@
+component_depth: 1
+exclude:
+  - ".*/views/.*"
+  - "./*.json"
+  - "./*.md"
+  - ".*/coverage/.*"
+  - ".*/public/stylesheets/.*"
+  - "./*.ejs"
+  - "./*.css"
+languages:
+  - name: javascript

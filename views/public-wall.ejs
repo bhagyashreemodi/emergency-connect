@@ -1,0 +1,12 @@
+<div class="container-fluid container-main container-chat">
+  <%- include('tab-header', {
+    title: 'Public Wall',
+    searchButton: true
+  }) %> 
+
+    <ul class="chat-message-list" id="messages">
+        <!-- Messages will be dynamically inserted here -->
+    </ul>
+    <%- include('chat-input-form', { formId: 'postMessageForm', inputId: 'messageInput', placeholder: 'Type your message...' }) %>
+
+</div>

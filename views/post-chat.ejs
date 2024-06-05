@@ -1,0 +1,14 @@
+<div class="container-fluid container-main">
+    <%- include('tab-header', {
+        title: 'Shelter Post Chat',
+        backButton: true,
+        backButtonTarget: 'shelter'
+    }) %>
+
+    <ul class="chat-message-list" id="messages">
+        <!-- Messages will be dynamically inserted here -->
+    </ul>
+
+    <%- include('chat-input-form', { formId: 'postMessageForm', inputId: 'messageInput', placeholder: 'Type your message...' }) %>
+
+</div>

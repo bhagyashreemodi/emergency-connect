@@ -1,0 +1,34 @@
+<div class="container-fluid container-main container-chat">
+    <%- include('tab-header', {
+        title: 'Volunteer Menu',
+        backButton: true,
+        backButtonTarget: 'resources'
+    }) %>
+
+    <ul class="chat-message-list">
+        <li class="resource-item" data-resource="register-volunteer" id="registerVolunteerBtn">
+          <div class="resource-item-header">
+            <i class="fas fa-hands-helping"></i>
+            <span class="resource-name">Register As Volunteer</span>
+          </div>
+        </li>
+        <li class="resource-item" data-resource="volunteer-assignments" id="volunteerAssignmentsBtn">
+          <div class="resource-item-header">
+            <i class="fas fa-tasks"></i>
+            <span class="resource-name">My Volunteer Assignments</span>
+          </div>
+        </li>
+        <li class="resource-item" data-resource="update-profile" id="volunteerProfileUpdateBtn">
+          <div class="resource-item-header">
+            <i class="fas fa-user-edit"></i>
+            <span class="resource-name">Update Profile</span>
+          </div>
+        </li>
+        <li class="resource-item" data-resource="deregister-volunteer" id="volunteerUnRegisterBtn">
+          <div class="resource-item-header">
+            <i class="fas fa-user-times"></i>
+            <span class="resource-name">DeRegister As Volunteer</span>
+          </div>
+        </li>
+    </ul>
+</div>

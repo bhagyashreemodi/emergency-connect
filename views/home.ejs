@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESN Directory and Public Wall</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="/stylesheets/chat-publicly.css" rel="stylesheet">
+    <link href="/stylesheets/esn-directory.css" rel="stylesheet">
+    <link href="/stylesheets/home-page.css" rel="stylesheet">
+    <link href="/stylesheets/shelter-style.css" rel="stylesheet">
+    <link href="/stylesheets/resource-manager.css" rel="stylesheet">
+    <link href="/stylesheets/volunteer-management.css" rel="stylesheet">
+
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/incident-map.js"></script>
+    <script src="/scripts/volunteer-management.js"></script>
+    <script src="/scripts/chat-publicly.js"></script>
+    <script src="/scripts/esn-directory.js"></script>
+    <script src="/scripts/chat-privately.js"></script>
+    <script src="/scripts/announcement.js"></script>
+    <script src="/scripts/resource-sharing-hub.js"></script>
+    <script src="/scripts/shelter-posts.js"></script>
+    <script src="/scripts/socket-manager.js"></script>
+    <script src="/scripts/home-page.js"></script>
+    <script src="/scripts/esn-speed-test.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />
+ 
+</head>
+<body>
+<div class="container-fluid container-main p-0">
+    <%- include('modal', { id: 'accountInactiveModal' , title: 'Account Notification' , body: ` <div
+        class="alert alert-danger" role="alert">
+        Your account has been deactivated. If this is an error, please contact support.
+        </div>
+        `,
+        footer: `
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="homePage.logoutUser();">Close</button>
+        `,
+        closeButton: false
+        }) %>
+
+    <div class="user-info pt-2 pb-0 px-3">
+        <div class="tab-header username">
+            <span id="usernameDisplay">Username</span>
+        </div>  
+        <div class="navbar-action">
+            <button type="button" class="btn btn-sm btn-primary mr-2" style="display: none" id="startSpeedTestButton">Speed Test</button>
+            <button type="button" class="btn btn-sm btn-primary" id="logoutButton">Log Out</button>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="esn-directory-tab" data-toggle="tab" href="#esn-directory" role="tab"
+               aria-controls="esn-directory" aria-selected="true"><i class="fas fa-users"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="public-wall-tab" data-toggle="tab" href="#public-wall" role="tab"
+               aria-controls="public-wall" aria-selected="false"><i class="fas fa-globe-americas"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="dms-tab" data-toggle="tab" href="#dms" role="tab"
+               aria-controls="dms" aria-selected="false"><i class="fas fa-envelope"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="announcement-tab" data-toggle="tab" href="#announcement" role="tab"
+               aria-controls="announcement" aria-selected="false"><i class="fas fa-bullhorn"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="resources-tab" data-toggle="tab" href="#resources" role="tab"
+            aria-controls="resources" aria-selected="false"><i class="fas fa-bars"></i> </a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tab-content">
+        <!-- Tab panes will be inserted here -->
+
+    </div>
+    <%- include('modal', {
+        id: 'volunteerMgmntModal',
+        title: 'Alert',
+        body: `
+          <div id="volunteerMgmntModalMessage" class="alert alert-info" role="alert"></div>
+        `,
+        closeButtonId: 'volunteerMgmntModalClose'
+    }) %>
+</div>
+
+<!-- Search Modal -->
+  <%- include('modal', {
+    id: 'searchModal',
+    title: 'Search',
+    body: `
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" id="clearSearchBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <input type="text" class="form-control" id="searchInput" placeholder="Enter search keyword...">
+        <select class="form-control" id="searchStatusSelect" style="display: none;">
+            <option value="" selected disabled hidden>Select status</option>
+            <option value="OK">OK</option>
+            <option value="Help">Help</option>
+            <option value="Emergency">Emergency</option>
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" id="searchExecuteBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <div id="searchTypeToggle" style="display: none;">
+        <div class="mt-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="searchByUsername" value="username" checked>
+                <label class="form-check-label" for="searchByUsername">Search by Username</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="searchType" id="searchByStatus" value="status">
+                <label class="form-check-label" for="searchByStatus">Search by Status</label>
+            </div>
+        </div>
+    </div>
+    <div id="searchResults" style="display: none; margin-top: 15px;">
+        <!-- Search results will be dynamically populated here -->
+    </div>
+    <div id="noSearchText" class="text-muted text-center mt-3 mb-3">
+        Please enter a search keyword and click the search icon to perform a search.
+    </div>
+    `,
+    footer: `
+      <div id="resultCount" class="mr-auto" style="display: none;"></div>
+      <div id="pagination">
+        <button type="button" class="btn btn-primary" id="prevPageBtn" disabled>Prev</button>
+        <button type="button" class="btn btn-primary ml-2" id="nextPageBtn" disabled>Next</button>
+      </div>
+    `
+  }) %>
+
+  <div class="position-fixed p-3" style="z-index: 2; top: 150px; left: 50%; transform: translateX(-50%);">
+    <div id="successToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+      <div class="toast-header">
+        <strong class="mr-auto">Alert</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        <!-- Success message will be dynamically populated here -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
